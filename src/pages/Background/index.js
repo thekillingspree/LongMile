@@ -3,8 +3,9 @@ import '../../assets/img/icon-128.png';
 import moment from 'moment';
 import { getHostname, getTodayKey } from './utils';
 
-const today = {};
+let today = {};
 let lastTab = null;
+let todayDate = getTodayKey();
 const getToday = () => {
   return new Promise((resolve, reject) => {
     chrome.storage.sync.get(getTodayKey(), (items) => {
@@ -16,6 +17,24 @@ const getToday = () => {
     });
   });
 };
+
+const interId = setInterval(() => {
+  console.log('Running', todayDate, getTodayKey());
+  if (todayDate !== getTodayKey()) {
+    console.log('DATE CHANGED!!!!!');
+    computeAndAddTabInfo(lastTab);
+    todayDate = getTodayKey();
+    today = {};
+    console.log('new todat', today);
+    getToday().then((items) => {
+      Object.assign(today, items);
+    });
+    lastTab = {
+      ...lastTab,
+      start: moment(),
+    };
+  }
+}, 20000);
 
 getToday().then((items) => {
   Object.assign(today, items);
@@ -86,11 +105,10 @@ const computeAndAddTabInfo = (tab) => {
 
   const tabEntry = {
     time: time + secondsElapsed,
-    favIcon,
+    favIcon: favIcon || current?.favIcon,
   };
   today[hostName] = tabEntry;
   const storage = {};
-  storage[getTodayKey()] = today;
-  console.log('towrite');
+  storage[todayDate] = today;
   chrome.storage.sync.set(storage);
 };

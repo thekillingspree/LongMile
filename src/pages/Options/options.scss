@@ -1,0 +1,46 @@
+@import "./index.scss";
+
+.logo {
+  padding: 0 20px;
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+.list-item {
+  margin-top: 10px !important;
+  .icon {
+    color: #000 !important;
+  }
+  transition: all 0.3s ease-in-out !important;
+  border-radius: 8px !important;
+}
+
+.active.list-item {
+  color: #fff !important;
+  background: $purple !important;
+  .icon {
+    color: #fff !important;
+  }
+}
+
+.list {
+  padding: 0 20px!important;
+}
+
+.drawer {
+  * {
+    border-right: none !important;
+  }
+}
+
+.container {
+  margin-left: 270px !important;
+  height: 80vh;
+}
+
+.chart-container {
+  height: 90vh;
+  display: flex;
+  width: 100%;
+}
