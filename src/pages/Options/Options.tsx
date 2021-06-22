@@ -11,12 +11,15 @@ import SecurityRoundedIcon from '@material-ui/icons/SecurityRounded';
 import Container from '@material-ui/core/Container';
 import ScreenShare from './ScreenShare';
 import ScreenTime from './ScreenTime';
+import { ThemeProvider } from '@material-ui/core/styles';
+
 import './options.scss';
+import { theme } from './components/Theme';
 
 const Options = () => {
-  const [activeTab, setActiveTab] = useState('st');
+  const [activeTab, setActiveTab] = useState('st'); //st
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <Drawer className="drawer" variant="permanent" anchor="left">
         <div className="logo">
@@ -54,7 +57,7 @@ const Options = () => {
       <Container className="container">
         {activeTab === 'st' ? <ScreenTime /> : <ScreenShare />}
       </Container>
-    </div>
+    </ThemeProvider>
   );
 };
 

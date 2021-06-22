@@ -61,6 +61,33 @@ const getSitesFromDay = (day: any) => {
   return sites;
 };
 
+export const getSitesToBlur = async (): Promise<SitesPayload> => {
+  const items: any = await getDataFromChrome();
+  const sites = items.sites;
+  console.log(sites);
+  return {
+    sites: sites.slice(1),
+    enabled: sites[0].enabled,
+  };
+};
+
+export const setSitesToBlur = async (
+  sites: SiteBlur[],
+  globalEnabled: boolean
+) => {
+  chrome.storage.sync.set({ sites: [{ enabled: globalEnabled }, ...sites] });
+};
+
+export interface SiteBlur {
+  host: string;
+  enabled: boolean;
+}
+
+interface SitesPayload {
+  sites: SiteBlur[];
+  enabled: boolean;
+}
+
 interface SiteTracked {
   name: string;
   favIcon: string;
@@ -100,4 +127,11 @@ export const getChartData = async (startDay: string): Promise<DataItem[]> => {
   }
   console.log(Object.values(data));
   return Object.values(data);
+};
+
+export const checkHostname = (hostname: string): boolean => {
+  const regex =
+    /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$|^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)+([A-Za-z]|[A-Za-z][A-Za-z0-9\-]*[A-Za-z0-9])$/;
+
+  return regex.test(hostname);
 };

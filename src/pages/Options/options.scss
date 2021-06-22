@@ -44,3 +44,26 @@
   display: flex;
   width: 100%;
 }
+
+.new-site-form {
+  display: flex;
+  .new-site-text {
+    flex: 1;
+  }
+}
+
+.global-switch {
+  padding: 30px;
+  width: 500px;
+  color: #fff !important;
+  transition: 0.3s all ease-in-out !important;
+
+  h3, p {
+    margin: 0px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+  }
+  p {
+    opacity: 0.7;
+  }
+}

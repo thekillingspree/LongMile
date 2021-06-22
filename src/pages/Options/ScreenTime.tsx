@@ -88,8 +88,10 @@ const ScreenTime = () => {
             </BarChart>
           </ResponsiveContainer>
           <div className="sites">
-            <h1>{readableHoursFromDecimal(getSelectedDate()!.Time)}</h1>
-
+            <h1 style={{ marginBottom: 5 }}>
+              {readableHoursFromDecimal(getSelectedDate()!.Time)}
+            </h1>
+            <p style={{ marginTop: 0, opacity: 0.8 }}>On {selectedDate}</p>
             <List>
               {getSelectedDate()!.sites.map((site) => {
                 return (
