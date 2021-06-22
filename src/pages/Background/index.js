@@ -112,3 +112,15 @@ const computeAndAddTabInfo = (tab) => {
   storage[todayDate] = today;
   chrome.storage.sync.set(storage);
 };
+
+chrome.runtime.onInstalled.addListener((info) => {
+  if (info.reason === 'install') {
+    chrome.storage.sync.set({
+      sites: [
+        {
+          enabled: false,
+        },
+      ],
+    });
+  }
+});
