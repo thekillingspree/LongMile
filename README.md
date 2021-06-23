@@ -4,7 +4,9 @@ All in one productivity suite. Use LongMile to skyrocket your productivity and t
 
 <hr/>
 
-This repository contains the code for the LongMile companion app. It provides two main features.
+This repository contains the code for the LongMile companion extension. The extension is supported on all Chromium based browsers like Edge, Chrome, Brave etc. 
+
+It provides two main features.
 
 #### Screen Time
 The extension tracks your weekly screen time on websites with a graphical representation. You can track the amount of time spent on each website. This way, you get to know on which website you spend the most amount of your time.
